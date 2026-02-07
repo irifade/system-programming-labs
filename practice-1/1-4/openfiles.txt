@@ -1,0 +1,75 @@
+--- Задание 1-4, Вариант 4: Диагностика процессов ---
+Команда: sleep 30 &
+PID процесса: 447
+
+--- Поиск PID с помощью ps aux | grep sleep ---
+irina        447  0.0  0.0   3124  1664 pts/0    S+   21:24   0:00 sleep 30
+
+--- Вывод /proc/[PID]/status ---
+Name:	sleep
+Umask:	0022
+State:	S (sleeping)
+Tgid:	447
+Ngid:	0
+Pid:	447
+PPid:	444
+TracerPid:	0
+Uid:	1000	1000	1000	1000
+Gid:	1000	1000	1000	1000
+FDSize:	256
+Groups:	4 24 27 30 46 100 1000 
+NStgid:	447
+NSpid:	447
+NSpgid:	444
+NSsid:	306
+Kthread:	0
+VmPeak:	    3124 kB
+VmSize:	    3124 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	    1664 kB
+VmRSS:	    1664 kB
+RssAnon:	       0 kB
+RssFile:	    1664 kB
+RssShmem:	       0 kB
+VmData:	     224 kB
+VmStk:	     132 kB
+VmExe:	      16 kB
+VmLib:	    1748 kB
+VmPTE:	      44 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+untag_mask:	0xffffffffffffffff
+Threads:	1
+SigQ:	1/14877
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	0000000000000006
+SigCgt:	0000000000000000
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	000001ffffffffff
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	0
+Seccomp_filters:	0
+Speculation_Store_Bypass:	thread vulnerable
+SpeculationIndirectBranch:	conditional enabled
+Cpus_allowed:	f
+Cpus_allowed_list:	0-3
+Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	4
+nonvoluntary_ctxt_switches:	0
+
+--- Отправка SIGTERM процессу 447 ---
+
+--- Проверка завершения процесса (ls -l proc/447) ---
+ls: cannot access '/proc/447': No such file or directory
+Процесс 447 завершен и директория /proc/447 не найдена.
+
+--- Анализ завершен. Все команды и результаты в openfiles.txt ---
