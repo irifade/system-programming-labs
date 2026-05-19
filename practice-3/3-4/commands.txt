@@ -1,0 +1,25 @@
+﻿1. Подключение к локальному серверу через nc и отправка сообщения:
+$ nc localhost 8080
+Привет, сервер!
+Привет, сервер!
+exit
+
+2. Проверка активных сетевых соединений (утилита ss):
+$ ss -tlnp | grep 8080
+LISTEN 0      3          0.0.0.0:8080       0.0.0.0:*     users:((task,pid=12345,fd=3))
+
+3. Проверка открытых портов процессом (утилита lsof):
+$ lsof -i :8080
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+task   12345 irina    3u  IPv4  43210      0t0  TCP *:http-alt (LISTEN)
+
+4. Проверка доступности локального хоста (утилита ping):
+$ ping -c 3 localhost
+PING localhost(localhost (::1)) 56 data bytes
+64 bytes from localhost (::1): icmp_seq=1 ttl=64 time=0.042 ms
+64 bytes from localhost (::1): icmp_seq=2 ttl=64 time=0.038 ms
+64 bytes from localhost (::1): icmp_seq=3 ttl=64 time=0.041 ms
+
+--- localhost ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2045ms
+rtt min/avg/max/mdev = 0.038/0.040/0.042/0.002 ms
